@@ -53,7 +53,7 @@ Everything else is a decision you make.
 - Component model (`ComponentBase`)
 
 <!-- column: 1 -->
-
+<!-- pause -->
 **React hands them back to you:**
 
 - Routing → React Router (community standard)

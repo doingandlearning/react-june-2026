@@ -247,6 +247,8 @@ JSX is JavaScript — you use JavaScript expressions to render conditionally.
 {isLoading && <Spinner />}
 ```
 
+<!-- pause -->
+
 **Ternary: one of two options**
 
 ```tsx
@@ -255,7 +257,7 @@ JSX is JavaScript — you use JavaScript expressions to render conditionally.
   : <DataTable rows={rows} />
 }
 ```
-
+<!-- pause -->
 <!-- column: 1 -->
 
 **Early return: complex conditions**
