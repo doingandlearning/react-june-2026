@@ -1,4 +1,4 @@
-import { Tool } from "./data";
+import type { Tool } from "./data";
 
 interface ToolCardProps {
   tool: Tool;

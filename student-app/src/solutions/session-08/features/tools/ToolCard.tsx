@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Tool } from "../../mock-api";
+import type { Tool } from "../../mock-api";
 import styles from "./ToolCard.module.css";
 
 interface ToolCardProps {
