@@ -1,4 +1,4 @@
-import { Tool } from "../mock-api";
+import type { Tool } from "../../mock-api";
 
 interface ToolCardProps {
   tool: Tool;

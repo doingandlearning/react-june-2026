@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useTools } from "../hooks/useTools";
-import { ToolList } from "../components/ToolList";
-import { FilterBar } from "../components/FilterBar";
-import { ResultCount } from "../components/ResultCount";
-import { Panel } from "../components/Panel";
+import { useTools } from "./useTools";
+import { ToolList } from "./ToolList";
+import { FilterBar } from "./FilterBar";
+import { ResultCount } from "./ResultCount";
+import { Panel } from "../../shared/Panel";
 
 // TODO Task 2 — replace placeholder Link with a real <Link to={...}> for each tool name
 
@@ -20,7 +20,7 @@ export function ToolListPage() {
     .filter((t) => showDeprecated || t.status === "active");
 
   if (loading) return <Panel title="Internal Tools"><p>Loading tools…</p></Panel>;
-  if (error)   return <Panel title="Internal Tools"><p role="alert">{error}</p></Panel>;
+  if (error) return <Panel title="Internal Tools"><p role="alert">{error}</p></Panel>;
 
   return (
     <Panel title="Internal Tools">

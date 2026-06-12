@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchToolById, type Tool } from "../mock-api";
+import { fetchToolById, type Tool } from "../../mock-api";
 
 // TODO Task 3 — implement this hook
 // Signature: useToolById(id: string | undefined): { tool, loading, error }

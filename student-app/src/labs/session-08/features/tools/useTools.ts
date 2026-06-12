@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchTools, type Tool } from "../mock-api";
+import { fetchTools, type Tool } from "../../mock-api";
 
 // Complete — brought forward from Session 05.
 // useTools fetches all tools (or a category subset) and manages

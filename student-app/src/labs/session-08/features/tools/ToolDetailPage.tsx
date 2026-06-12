@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { useToolById } from "../hooks/useToolById";
+import { useToolById } from "./useToolById";
 
 // TODO Task 4 — complete this page
 // - Read :id from URL with useParams
@@ -13,8 +13,8 @@ export function ToolDetailPage() {
   const { tool, loading, error } = useToolById(id);
 
   if (loading) return <p>Loading…</p>;
-  if (error)   return <p role="alert">Failed to load tool.</p>;
-  if (!tool)   return <p>Tool not found.</p>;
+  if (error) return <p role="alert">Failed to load tool.</p>;
+  if (!tool) return <p>Tool not found.</p>;
 
   return (
     <div>

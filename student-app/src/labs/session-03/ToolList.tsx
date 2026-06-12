@@ -1,4 +1,4 @@
-import { Tool } from "./data";
+import type { Tool } from "./data";
 import { ToolCard } from "./ToolCard";
 
 interface ToolListProps {

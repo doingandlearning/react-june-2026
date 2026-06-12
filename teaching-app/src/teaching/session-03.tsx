@@ -14,6 +14,26 @@
 import { useState } from "react";
 import { tools, type Tool } from "./data";
 
+function TagList() {
+  const [tags, setTags] = useState(["platform", "sre"]);
+
+  function addTag() {
+    // tags.push("finance"); // do this deliberately wrong
+    setTags([...tags, "finance"]);    // log it so they can see it's "working"
+  }
+
+  return (
+    <div>
+      <ul>
+        {tags.map((tag, i) => <li key={i}>{tag}</li>)}
+      </ul>
+      <button onClick={addTag}>Add tag</button>
+      <input placeholder="Search" type="" />
+    </div>
+  );
+}
+
+
 // ─── Beat 1 — start here ─────────────────────────────────────────────────────
 // Write Counter with let count = 0 first (broken), then fix with useState
 
@@ -34,5 +54,5 @@ import { tools, type Tool } from "./data";
 // Write UserProfile — user.role = "lead" (broken), then spread fix
 
 export function Session03Teaching() {
-  return <p>Session 3 — ready to build</p>;
+  return <TagList />
 }
