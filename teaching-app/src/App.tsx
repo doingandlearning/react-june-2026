@@ -5,21 +5,16 @@
 // import { Session02Teaching as ActiveSession } from './teaching/session-02'
 // import { Session03Teaching as ActiveSession } from './teaching/session-03'
 // import { Session04Teaching as ActiveSession } from './teaching/session-04'
-import { Session05Teaching as ActiveSession } from './teaching/session-05'
-// import { Session06Teaching as ActiveSession } from './teaching/session-06'
+// import { Session05Teaching as ActiveSession } from './teaching/session-05'
+import { Session06Teaching as ActiveSession } from './teaching/session-06'
 // import { Session07Teaching as ActiveSession } from './teaching/session-07'
 // import { Session08Teaching as ActiveSession } from './teaching/session-08'
 import { Routes, Route } from "react-router-dom";
-
+import "./App.css";
 function ToolDetail() {
   return <p>Tool details coming soon!!!!</p>
 }
 
 export default function App() {
-  return <Routes>
-    <Route path="/" element={<ActiveSession />} />
-    <Route path="/tools/:id" element={<ToolDetail />} />
-    <Route path="/settings" element={<p>Settings coming soon…</p>} />
-    <Route path="*" element={<p>404 Not Found</p>} />
-  </Routes>
+  return <ActiveSession />
 }
