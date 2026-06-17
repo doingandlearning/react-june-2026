@@ -86,7 +86,7 @@ speaker_note: |
 One package, added to the project once.
 
 ```bash
-npm install react-router-dom
+npm install react-router-dom@6
 ```
 
 <!-- pause -->

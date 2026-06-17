@@ -220,13 +220,13 @@ Open Chrome DevTools on the running app — Lighthouse tab. Run an audit (Access
 
 Read one failure out loud. Fix it live if it's quick (missing `lang` attribute on `<html>`, an unlabelled button).
 
-> "This is your baseline. The lab includes a Lighthouse task — run it on your finished app and fix at least one issue it surfaces. Day 3 goes deeper into accessibility."
+> "This is your baseline. The lab includes a Lighthouse task — run it on your finished app and fix at least one issue it surfaces. We go deeper into accessibility later today."
 
 ---
 
 ## Handover to the lab
 
-> "The Day 2 capstone lab is the whole app assembled — auth context, CSS Modules, full CRUD with routing and a form. Everything from Sessions 5 through 8. You have all the pieces. The lab puts them together."
+> "This capstone lab is the whole app assembled — auth context, CSS Modules, full CRUD with routing and a form. Everything from Sessions 5 through 8. You have all the pieces. The lab puts them together."
 
 ---
 

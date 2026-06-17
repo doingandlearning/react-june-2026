@@ -552,20 +552,20 @@ Back to the opening. Two problems — auth prop drilling and CSS collisions.
 
 <!-- pause -->
 
-**Day 2 complete.** You have a working app — it fetches data, has multiple pages, handles forms with validation and security, and is structured to grow.
+**The app is now feature-complete.** It fetches data, has multiple pages, handles forms with validation and security, and is structured to grow.
 
 <!--
 speaker_note: |
-  Take a moment before the lab to let the scope of Day 2 land. They've gone from
+  Take a moment before the lab to let the scope land. They've gone from
   a hardcoded list in a single file to a routed, data-fetching, form-capable app
-  with accessible error handling and scoped styles. The lab cements it. Day 3
-  picks up with testing and more advanced state management — the app they build
-  today is the one they'll test and refactor tomorrow.
+  with accessible error handling and scoped styles. The lab cements it. The rest
+  of today picks up with testing and more advanced state management — the app
+  they build in this session is the one they'll test and refactor next.
 -->
 
 <!-- end_slide -->
 
-## Day 2 summary
+## Recap — Sessions 5–8
 
 <!-- incremental_lists: true -->
 
@@ -582,23 +582,26 @@ speaker_note: |
 
 <!-- end_slide -->
 
-## Gap task — before Day 3
+## Bridge to Session 9
 
-Complete independently. Bring notes to the Day 3 opening discussion.
+**We've established:**
 
 <!-- incremental_lists: true -->
 
-- Add a second route with its own view to the ToolDirectory
-- Pass data between routes using route params or context
-- Add CSS Modules styling to at least two components
-- Run a Lighthouse accessibility audit and fix at least one issue it surfaces
-- Note one thing that confused you and one thing you'd like to go deeper on
+- `useContext` for state that many components need, without prop drilling
+- CSS Modules for scoped, collision-free styling
+- Feature folders for organising a growing app
+- Lighthouse and WAVE as a baseline accessibility check
 
 <!-- incremental_lists: false -->
 
-<!-- pause -->
+**Session 9 — Testing React** — now that the app does something real, how do you know a change hasn't broken it?
 
-Day 3 opens with a 15-minute retro on what came up. Nothing to submit — bring your notes.
+<!--
+speaker_note: |
+  This now sits mid-Day-3, after the gap task retro and recap, not at the end of Day 2.
+  Keep the transition light — the app from this session is exactly what gets tested next.
+-->
 
 <!-- end_slide -->
 

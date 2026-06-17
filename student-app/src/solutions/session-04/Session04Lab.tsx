@@ -11,17 +11,18 @@ function ResultCount({ count, total }: { count: number; total: number }) {
   );
 }
 
+interface FilterBarProps {
+  query: string;
+  showDeprecated: boolean;
+  onQueryChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onShowDeprecatedChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 function FilterBar({
   query,
   onQueryChange,
   showDeprecated,
   onShowDeprecatedChange,
-}: {
-  query: string;
-  onQueryChange: (v: string) => void;
-  showDeprecated: boolean;
-  onShowDeprecatedChange: (v: boolean) => void;
-}) {
+}: FilterBarProps) {
   return (
     <div>
       <label htmlFor="query">Search</label>
@@ -29,13 +30,13 @@ function FilterBar({
         id="query"
         type="text"
         value={query}
-        onChange={(e) => onQueryChange(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onQueryChange(e)}
       />
       <label>
         <input
           type="checkbox"
           checked={showDeprecated}
-          onChange={(e) => onShowDeprecatedChange(e.target.checked)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => onShowDeprecatedChange(e)}
         />
         {" "}Show deprecated
       </label>

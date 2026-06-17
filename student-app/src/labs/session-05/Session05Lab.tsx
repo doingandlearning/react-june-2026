@@ -1,22 +1,7 @@
 import { useState } from "react";
 import { Panel } from "./Panel";
 import { ToolList } from "./ToolList";
-import type { Tool } from "./mock-api";
-
-// TODO Task 1 — write a useTools custom hook above this component
-// Signature: function useTools(): { tools: Tool[], loading: boolean, error: string | null }
-// - Uses useState for tools, loading (true), and error (null)
-// - Uses useEffect to call fetchTools() from "./mock-api"
-// - Handles both the success and error paths
-// - Returns { tools, loading, error }
-
-// TODO Task 5 — add a ResultCount component
-// Props: count (number), total (number)
-// Must use role="status" or aria-live="polite"
-
-// TODO Task 5 — add a FilterBar component
-// Props: query, onQueryChange, showDeprecated, onShowDeprecatedChange
-// No internal state
+import { useTools } from "./hooks/useTools";
 
 export function Session05Lab() {
   const [query, setQuery] = useState("");
@@ -24,9 +9,7 @@ export function Session05Lab() {
   const [dismissed, setDismissed] = useState<string[]>([]);
 
   // TODO Task 2 — replace these with your useTools hook
-  const tools: Tool[] = [];
-  const loading = false;
-  const error = null;
+  const { tools, loading, error } = useTools();
 
   const filteredTools = tools
     .filter((t) => !dismissed.includes(t.id))

@@ -6,9 +6,13 @@
 // import { Session03Teaching as ActiveSession } from './teaching/session-03'
 // import { Session04Teaching as ActiveSession } from './teaching/session-04'
 // import { Session05Teaching as ActiveSession } from './teaching/session-05'
-import { Session06Teaching as ActiveSession } from './teaching/session-06'
-// import { Session07Teaching as ActiveSession } from './teaching/session-07'
+// import { Session06Teaching as ActiveSession } from './teaching/session-06'
+import { Session07Teaching as ActiveSession } from './teaching/session-07'
 // import { Session08Teaching as ActiveSession } from './teaching/session-08'
+// import { Session09Teaching as ActiveSession } from './teaching/session-09'
+// import { Session10Teaching as ActiveSession } from './teaching/session-10'
+// import { Session11Teaching as ActiveSession } from './teaching/session-11'
+// import { Session12Teaching as ActiveSession } from './teaching/session-12'
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 function ToolDetail() {

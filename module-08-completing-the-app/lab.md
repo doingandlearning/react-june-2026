@@ -1,8 +1,14 @@
-# Session 8 Lab — Completing the App (Day 2 Capstone)
+# Session 8 Lab — Completing the App (Capstone — Sessions 5–8)
 
 ## Overview
 
-This is the Day 2 capstone. You're assembling everything from Sessions 5–8 into a complete, production-shaped ToolDirectory — authenticated, routed, data-fetching, form-capable, and styled with scoped CSS.
+This is the capstone for everything from Sessions 5–8. You're assembling it into a complete, production-shaped ToolDirectory — authenticated, routed, data-fetching, form-capable, and styled with scoped CSS.
+
+That's a lot of moving parts. You don't need to finish all of it in this session.
+
+**Core (Tasks 1–5)** gets authentication working end to end — this is the conceptual payoff of the session (context replacing prop drilling) and the part worth protecting time for.
+
+**If time allows (Tasks 6–8)** adds the styling and the Lighthouse pass. If you're still on Task 4 when the session is wrapping up, stop there — these tasks pick up cleanly at the start of the next session, nothing is lost by deferring them.
 
 ---
 
@@ -36,6 +42,8 @@ import { Session08Lab as ActiveLab } from './labs/session-08/Session08Lab'
 ## Your Tasks
 
 ---
+
+## Core
 
 ### Task 1 — Fix import paths after the reorganisation
 
@@ -116,6 +124,12 @@ Add `UserBadge` to `layouts/AppLayout.tsx` in the nav, on the opposite side from
 **Outcome:** after signing in, the nav shows the user's name. Clicking "Sign out" clears the session and protected routes redirect again.
 
 ---
+
+**Checkpoint.** If auth is working end to end — protected route redirects, sign in, nav badge, sign out — the core of this session is done. Everything below is styling and a tooling pass. Take a short break here if you want one before switching gears.
+
+---
+
+## If time allows
 
 ### Task 6 — CSS Modules for ToolCard
 

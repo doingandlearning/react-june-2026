@@ -32,6 +32,107 @@ import { submitTool } from "./mock-api";
 // Paste this into the description to trigger the alert:
 // <img src=x onerror="alert('XSS')">
 
+interface ToolFormData {
+  toolname: string;
+  owner: string;
+  category: "devops" | "product" | "support" | "data";
+  password?: string;
+}
+
+function AddToolForm() {
+  const [form, setForm] = useState<ToolFormData>({
+    toolname: "",
+    owner: "",
+    category: "devops",
+    password: ""
+  });
+
+  const [errors, setErrors] = useState<{ [K in keyof ToolFormData]?: string }>({});
+  const [submitted, setSubmitted] = useState(false);
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+    setForm((prevForm) => ({ ...prevForm, [e.target.name]: e.target.value }));
+    if (submitted) {
+      const errs = validate(form);
+      setErrors(errs);
+    }
+  }
+
+  interface FormErrors {
+    toolname?: string;
+    owner?: string;
+    category?: string;
+    password?: string;
+  }
+  function validate(data: ToolFormData): FormErrors {
+    const errors: FormErrors = {};
+    if (!data.toolname.trim()) {
+      errors.toolname = "Tool name is required";
+    }
+    // regex for password like structure
+    if (!data.owner.trim()) {
+      errors.owner = "Owner is required";
+    }
+    if (!["devops", "product", "support", "data"].includes(data.category)) {
+      errors.category = "Invalid category";
+    }
+    // Check password strength (alpha numeric, at least one symbol, at least 8 characters - use regex
+    if (data.password && !/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(data.password)) {
+      errors.password = "Password must be at least 8 characters";
+    }
+    return errors;
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    setSubmitted(true);
+    e.preventDefault();
+    setErrors({}); // clear previous errors
+
+    const errors = validate(form);
+    if (Object.keys(errors).length > 0) {
+      setErrors(errors);
+      return;
+    }
+    console.log("submitted", form);
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="toolname">Tool name</label>
+        <input
+          id="toolname"
+          name="toolname"
+          value={form.toolname}
+          onChange={handleChange}
+          aria-describedby={errors.toolname ? "toolname-error" :
+            undefined}
+          aria-invalid={!!errors.toolname}
+        />
+        <span role="alert" id="toolname-error">{errors.toolname}</span>
+      </div>
+      <div>
+        <label htmlFor="owner">Owner</label>
+        <input
+          id="owner"
+          name="owner"
+          value={form.owner}
+          onChange={handleChange}
+          aria-describedby={errors.owner ? "owner-error" : undefined}
+          aria-invalid={!!errors.owner}
+        />
+        <span role="alert" id="owner-error">{errors.owner}</span>
+      </div>
+      <div>
+
+        <label htmlFor="category">Category</label>
+        <input id="category" name="category" value={form.category} onChange={handleChange} />
+        <span role="alert">{errors.category}</span>
+      </div>
+
+      <button type="submit">Add tool</button>
+    </form>
+  );
+}
 // ─── Beat 2 — ToolFormData interface ─────────────────────────────────────────
 // interface ToolFormData { name: string; owner: string; category: string; description: string; }
 
@@ -53,5 +154,5 @@ import { submitTool } from "./mock-api";
 // ─── Beats 2–4 — write AddToolPage here ──────────────────────────────────────
 
 export function Session07Teaching() {
-  return <p>Session 7 — ready to build</p>;
+  return <AddToolForm />
 }
