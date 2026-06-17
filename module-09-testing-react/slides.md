@@ -69,7 +69,6 @@ speaker_note: |
 
 <!-- incremental_lists: false -->
 
-<!-- pause -->
 
 **The rule of thumb** — test what a user would notice if it broke.  
 If a refactor changes internal structure but not behaviour, the test should still pass.
