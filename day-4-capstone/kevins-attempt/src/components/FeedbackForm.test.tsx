@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
+import { CONFIRMATION_MESSAGES } from "./feedbackFormContent";
 import { FeedbackForm } from "./FeedbackForm";
 
 function renderForm(onSubmit = vi.fn()) {
@@ -62,7 +63,13 @@ describe("FeedbackForm", () => {
     await user.click(screen.getByRole("button", { name: "Submit feedback" }));
 
     expect(onSubmit).toHaveBeenCalledWith(4, "Great session!");
-    expect(screen.getByText("Thanks for your feedback!")).toBeInTheDocument();
+    // The confirmation copy is picked randomly from a fixed set — assert
+    // membership rather than one exact string.
+    expect(
+      CONFIRMATION_MESSAGES.some(
+        (message) => screen.queryByText(message) !== null,
+      ),
+    ).toBe(true);
     expect(
       screen.queryByRole("button", { name: "Submit feedback" }),
     ).not.toBeInTheDocument();
