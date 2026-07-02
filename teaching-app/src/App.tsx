@@ -11,10 +11,10 @@
 // import { Session08Teaching as ActiveSession } from './teaching/session-08'
 // import { Session08Lab as ActiveSession } from './teaching/session-08/Session08Lab'
 // import { Session09Teaching as ActiveSession } from './teaching/session-09'
-import { Session10Teaching as ActiveSession } from './teaching/session-10'
+// import { Session10Teaching as ActiveSession } from './teaching/session-10'
 // import { Session11Teaching as ActiveSession } from './teaching/session-11'
 // import { Session12Teaching as ActiveSession } from './teaching/session-12'
-// import { Session13Teaching as ActiveSession } from './teaching/session-13'
+import { Session13Teaching as ActiveSession } from './teaching/session-13'
 // import { StartOfDay3 as ActiveSession } from './teaching/start-of-day-3'
 import "./App.css";
 

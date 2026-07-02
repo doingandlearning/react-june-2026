@@ -19,15 +19,52 @@
 //   • Install MUI before the session starts so `npm install` isn't dead air:
 //       npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
 
-import { ThemeProvider, createTheme, CssBaseline, IconButton, TextField, Card, CardContent } from "@mui/material";
+import { ThemeProvider, createTheme, CssBaseline, IconButton, TextField, Card, CardContent, Chip, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-
+import type { Tool } from "./mock-api";
+import styles from "./session-13.module.css"
 // ─── Beat 1 — show the problem ────────────────────────────────────────────
 // Open ToolCard — point at the plain <button> Dismiss control.
 // Open AddToolPage — point at the plain <select> for category.
 // "We hand-built a focus trap for the login flow in Session 11. Building
 // that again for a drawer, a settings menu, a sortable table — that's real
 // time. What did MudBlazor give you instead?" (MudDrawer, MudTable, MudSwitch)
+interface ToolCardProps {
+  tool?: Tool;
+  onDismiss?: () => void;
+}
+
+function ToolCard({ tool, onDismiss }: ToolCardProps) {
+  return (
+    <div className={styles.card}>
+      <div className={styles.cardContent}>
+        <strong className={styles.name}>{tool?.name}</strong>
+        <span className={styles.owner}> — {tool?.owner}</span>
+        <span className={styles.spacer} />
+        <button
+          className={styles.dismissButton}
+          onClick={onDismiss}
+          aria-label={`Dismiss ${tool?.name}`}
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function ExampleComponent() {
+  return <ToolCard tool={{
+    id: "1",
+    name: "Hammer",
+    owner: "Alice",
+    status: "active",
+    category: "Tools"
+  }} onDismiss={() => { }} />;
+}
+
+
+
 
 // ─── Beat 2 — install and configure MUI ───────────────────────────────────
 // Build this live in main.tsx, wrapping the existing provider tree:
@@ -36,11 +73,7 @@ const theme = createTheme();
 // ReactDOM.createRoot(document.getElementById("root")!).render(
 //   <ThemeProvider theme={theme}>
 //     <CssBaseline />
-//     <AuthProvider>
-//       <BrowserRouter>
 //         <App />
-//       </BrowserRouter>
-//     </AuthProvider>
 //   </ThemeProvider>
 // );
 //
@@ -80,10 +113,9 @@ const theme = createTheme();
 // ─── Beat 5 — wrap ToolCard in Card/CardContent (optional) ────────────────
 // Show how far this goes — full retrofit, badge span keeps its CSS Modules
 // classes nested inside an MUI Card. This is the "coexistence" moment.
-function ToolCardDemo({ name, owner, statusClassName, statusLabel, onDismiss }: {
+function ToolCardDemo({ name, owner, statusLabel, onDismiss }: {
   name: string;
   owner: string;
-  statusClassName: string;
   statusLabel: string;
   onDismiss: () => void;
 }) {
@@ -92,7 +124,8 @@ function ToolCardDemo({ name, owner, statusClassName, statusLabel, onDismiss }: 
       <CardContent sx={{ display: "flex", alignItems: "center", gap: 1 }}>
         <strong>{name}</strong>
         <span> — {owner}</span>
-        <span className={statusClassName}>{statusLabel}</span>
+        <Chip label={statusLabel} color={statusLabel === "active" ? "success" : "error"} size="small" />
+        <Box sx={{ flexGrow: 1 }} />
         <IconButton onClick={onDismiss} aria-label={`Dismiss ${name}`} size="small">
           <CloseIcon fontSize="small" />
         </IconButton>
@@ -127,6 +160,19 @@ const themedTheme = createTheme({
 // elements. Fifteen to twenty minutes, not a rebuild. This afternoon's
 // capstone is where you build something new with MUI from the ground up."
 
+
+
+
 export function Session13Teaching() {
-  return <p>Session 13 — ready to build</p>;
+  // before
+  return <ThemeProvider theme={themedTheme}>
+    <ExampleComponent />
+    <ToolCardDemo name="Hammer" owner="Alice" statusLabel="active" onDismiss={() => { }} />
+  </ThemeProvider>
+
+
+  return <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <ExampleComponent />
+  </ThemeProvider>
 }

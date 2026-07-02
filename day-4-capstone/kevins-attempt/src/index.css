@@ -1,0 +1,11 @@
+/*
+ * Intentionally minimal. MUI's <CssBaseline /> (wired up in App.tsx) already
+ * handles the global reset — box-sizing, body margin, background/text
+ * color from the theme palette, font smoothing. Anything added here should
+ * go through the theme (src/theme.ts) instead of plain CSS, so it stays
+ * consistent regardless of the user's OS color-scheme preference — that's
+ * what caused the near-invisible heading: a leftover `h1, h2 { color:
+ * var(--text-h) }` rule here that flipped to a near-white value under
+ * `prefers-color-scheme: dark`, and nothing in MUI's Typography overrode
+ * it because Typography doesn't set its own color by default.
+ */
