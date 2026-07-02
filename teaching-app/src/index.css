@@ -109,3 +109,11 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+.active {
+  background: #e9f105;
+}
+
+li {
+  list-style: none;
+}

@@ -8,7 +8,6 @@ import { LoginPage } from "./features/auth/LoginPage";
 import { RequireAuth } from "./features/auth/RequireAuth";
 
 export function Session08Lab() {
-  const { user } = useAuth();
   return (
     <AuthProvider>
       <BrowserRouter>

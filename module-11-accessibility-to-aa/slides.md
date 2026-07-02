@@ -21,6 +21,111 @@ speaker_note: |
 
 <!-- end_slide -->
 
+
+<!-- jump_to_middle -->
+
+Lighthouse and WAVE
+===
+
+<!-- end_slide -->
+
+## What Lighthouse measures
+
+Lighthouse runs in Chrome DevTools — Cmd+Opt+I → Lighthouse tab → Analyse page load.
+
+<!-- column_layout: [1, 1] -->
+
+<!-- column: 0 -->
+
+**Five scored categories**
+
+<!-- incremental_lists: true -->
+
+- **Performance** — load speed, time to interactive
+- **Accessibility** — automated WCAG checks
+- **Best Practices** — HTTPS, console errors, deprecated APIs
+- **SEO** — meta tags, crawlability
+- **PWA** — service worker, manifest (Day 3 topic)
+
+<!-- incremental_lists: false -->
+
+<!-- column: 1 -->
+
+<!-- pause -->
+
+**For internal tools, focus on**
+
+Accessibility and Best Practices. Performance matters less for internal tools behind a VPN — the audience is small and on good connections.
+
+<!-- pause -->
+
+Accessibility score of **90+** is the realistic WCAG AA target for a working app. 100 is achievable with care.
+
+<!-- reset_layout -->
+
+<!-- pause -->
+
+**The accessibility score is a floor, not a ceiling.** Lighthouse catches about 30–40% of WCAG issues automatically. The rest require manual testing — WAVE and screen reader checks cover the gap.
+
+<!--
+speaker_note: |
+  The "30-40% automated coverage" figure is important to set expectations.
+  Lighthouse passing does not mean the app is fully accessible. It means the
+  automatable checks pass. Focus management, screen reader announcement, logical
+  reading order, and keyboard traps cannot be fully automated — they need a
+  human tester. WAVE (browser extension) catches some of what Lighthouse misses.
+  For Day 3, there's a dedicated accessibility session that goes deeper.
+-->
+
+<!-- end_slide -->
+
+## Reading a Lighthouse accessibility result
+
+Lighthouse groups issues by severity. Focus on the failures first.
+
+<!-- column_layout: [1, 1] -->
+
+<!-- column: 0 -->
+
+**Common failures in React apps**
+
+<!-- incremental_lists: true -->
+
+- Missing `<html lang>` attribute
+- Images without `alt` text
+- Buttons with no accessible name (icon buttons)
+- Form inputs with no associated label
+- Insufficient colour contrast
+- Links whose text is not descriptive ("click here")
+
+<!-- incremental_lists: false -->
+
+<!-- column: 1 -->
+
+<!-- pause -->
+
+**Reading the output**
+
+Each failure links to the element in the DOM. Click through to see exactly which element failed and why.
+
+<!-- pause -->
+
+Fix the failures before chasing the score. A score of 95 with known failures is worse than a score of 80 where every remaining issue is a known limitation.
+
+<!-- reset_layout -->
+
+<!--
+speaker_note: |
+  Run Lighthouse live on the finished ToolDirectory at this point if time allows.
+  The failures will be real and fixable — missing lang attribute, any icon buttons
+  that haven't been labelled yet. Fixing one live is more memorable than listing
+  them abstractly. If time is short, skip the live run and move to the lab handover.
+  This is the natural cut point if Day 2 is running long — the lab can include
+  the Lighthouse task without the session covering it in depth.
+-->
+
+<!-- end_slide -->
+
 <!-- jump_to_middle -->
 
 What WCAG AA Actually Means
@@ -32,9 +137,6 @@ What WCAG AA Actually Means
 
 WCAG has three levels — A, AA, AAA. AA is the legal and professional baseline in the UK.
 
-<!-- column_layout: [3, 2] -->
-
-<!-- column: 0 -->
 
 | Principle | What it means in practice |
 |---|---|
@@ -43,11 +145,9 @@ WCAG has three levels — A, AA, AAA. AA is the legal and professional baseline 
 | **Understandable** | Language is declared, errors are explained, forms are labelled |
 | **Robust** | Works with assistive technology — valid HTML, correct ARIA roles |
 
-<!-- column: 1 -->
 
 For internal tools — you're most likely to fail on **Operable** (keyboard) and **Understandable** (forms, errors).
 
-<!-- reset_layout -->
 
 <!--
 speaker_note: |

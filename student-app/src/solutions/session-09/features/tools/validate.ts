@@ -8,6 +8,7 @@ export interface ToolFormData {
 export interface FormErrors {
   name?: string;
   owner?: string;
+  category?: string;
 }
 
 export function validate(form: ToolFormData): FormErrors {
@@ -17,6 +18,9 @@ export function validate(form: ToolFormData): FormErrors {
   }
   if (!form.owner || !form.owner.trim()) {
     errors.owner = "Owner is required.";
+  }
+  if (!["devops", "product", "support", "data"].includes(form.category)) {
+    errors.category = "Invalid category provided.";
   }
   return errors;
 }

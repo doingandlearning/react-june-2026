@@ -24,16 +24,6 @@ import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 // Step 1: create the context
 // Step 2: write AuthProvider
 // Step 3: write and export useAuth (throw if used outside provider)
-
-interface User { id: string; name: string; email: string; }
-interface AuthContextValue {
-  user: User | null;
-  login: (user: User) => void;
-  logout: () => void;
-}
-
-const AuthContext = createContext<AuthContextValue | null>(null);
-
 // Write AuthProvider + useAuth below during Beat 2
 
 // ─── Beat 3 — update RequireAuth and LoginPage to use context ─────────────────
@@ -50,11 +40,103 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 // ─── Beat 5 — feature folder structure (show, don't move) ────────────────────
 // features/tools/  features/auth/  shared/  layouts/
 // Rule: deleting a feature = deleting a folder
-
+import type { Tool } from "./mock-api";
 // ─── Beat 6 — Lighthouse (optional) ──────────────────────────────────────────
 // DevTools → Lighthouse → Accessibility + Best Practices
 // Fix one failure live (missing lang="en" is the quickest)
+interface ToolCardProps {
+  tool?: Tool;
+  onDismiss?: () => void;
+}
+
+
+interface ToolListProps {
+  tools: Tool[];
+  onDismiss: (id: string) => void;
+}
+
+export function ToolList({ tools, onDismiss }: ToolListProps) {
+  return (
+    <ul>
+      {tools.map((tool) => (
+        <ToolCard key={tool.id} tool={tool} onDismiss={() => onDismiss(tool.id)} />
+      ))}
+    </ul>
+  );
+}
+
+// 1. Create the context
+interface AuthContextValue {
+  user: User | null;
+  login: (user: User) => void;
+  logout: () => void;
+}
+
+const AuthContext = createContext<AuthContextValue | null>(null);
+
+// 2. Provide the context -> creating a provider component
+
+function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [user, setUser] = useState<User | null>(null);
+
+  const login = () => {
+    setUser({
+      name: "Test User", id: "1", email: ""
+    });
+  };
+
+  const logout = () => {
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+function App() {
+  // Can't use useContext(AuthContext) here because App is outside the provider
+  return <AuthProvider><AppLayout /></AuthProvider>;          // AppLayout doesn't use user
+}
+
+function AppLayout() {
+  const { logout } = useContext(AuthContext) as AuthContextValue;  // 3. Consume the context
+  return <><button onClick={logout}>Logout</button><ToolListPage /></>;       // ToolListPage doesn't use user
+}
+
+function ToolListPage() {
+  return <ToolCard />;           // only ToolCard needs it
+}
+
+function useAuth() {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+}
+
+
+function ToolCard({ tool, onDismiss }: ToolCardProps) {
+  // const { user, login, logout } = useContext(AuthContext) as AuthContextValue;  // 3. Consume the context
+  const { user, login, logout } = useAuth();  // 3. Consume the context
+  return (
+    <div>
+      <strong>{tool?.name}</strong>
+      <span> — {tool?.owner}</span>
+      <button onClick={onDismiss} aria-label={`Dismiss ${tool?.name}`}>
+        Dismiss
+      </button>
+      <div>User: {user?.name}</div>
+      <button onClick={login}>Login</button>
+      <button onClick={logout}>Logout</button>
+    </div>
+  );
+}
+
 
 export function Session08Teaching() {
-  return <p>Session 8 — ready to build</p>;
+  return <App />;
 }
