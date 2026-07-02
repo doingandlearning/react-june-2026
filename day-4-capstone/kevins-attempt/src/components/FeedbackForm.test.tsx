@@ -4,8 +4,6 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { FeedbackForm } from "./FeedbackForm";
 
-// FeedbackForm renders a <Link to="/history"> after a successful submit,
-// so it needs a Router in the tree even though we're only testing the form.
 function renderForm(onSubmit = vi.fn()) {
   render(
     <MemoryRouter>
@@ -26,26 +24,39 @@ describe("FeedbackForm", () => {
     ).toBeInTheDocument();
   });
 
-  it("shows a validation error when submitting without a rating", async () => {
+  it("groups the star rating under an accessible 'Rating' legend", () => {
+    renderForm();
+
+    // A screen reader user tabbing onto the star radios should hear this
+    // group name, not just "1 Star, radio button" with no context.
+    expect(screen.getByText("Rating")).toBeInTheDocument();
+  });
+
+  it("shows a validation error when submitting without a rating, linked to the rating group via aria-describedby", async () => {
     const user = userEvent.setup();
     const { onSubmit } = renderForm();
 
     await user.click(screen.getByRole("button", { name: "Submit feedback" }));
 
-    expect(
-      screen.getByText("Please select a star rating before submitting."),
-    ).toBeInTheDocument();
+    const errorMessage = screen.getByText(
+      "Please select a star rating before submitting.",
+    );
+    expect(errorMessage).toBeInTheDocument();
     expect(onSubmit).not.toHaveBeenCalled();
+
+    const firstStar = screen.getByRole("radio", { name: "1 Star" });
+    const group = firstStar.closest("[aria-describedby]");
+    expect(group).not.toBeNull();
+    const describedByEl = document.getElementById(
+      group!.getAttribute("aria-describedby")!,
+    );
+    expect(describedByEl).toContainElement(errorMessage);
   });
 
   it("submits the rating and comment, then shows a confirmation in place of the form", async () => {
     const user = userEvent.setup();
     const { onSubmit } = renderForm();
 
-    // MUI's Rating renders the actual <input type="radio"> as visually
-    // hidden with pointer-events: none (the visible click target is the
-    // sibling <label>/icon). userEvent respects pointer-events and refuses
-    // to click it, so we fire the native click event directly here instead.
     fireEvent.click(screen.getByRole("radio", { name: "4 Stars" }));
     await user.type(screen.getByLabelText("Comment"), "Great session!");
     await user.click(screen.getByRole("button", { name: "Submit feedback" }));
