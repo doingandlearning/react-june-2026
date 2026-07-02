@@ -13,6 +13,7 @@ import { Session06Lab as ActiveLab } from './labs/session-06/Session06Lab'
 // import { Session10Lab as ActiveLab } from './labs/session-10/Session10Lab'
 // import { Session11Lab as ActiveLab } from './labs/session-11/Session11Lab'
 // import { Session12Lab as ActiveLab } from './labs/session-12/Session12Lab'
+// import { Session13Lab as ActiveLab } from './labs/session-13/Session13Lab'
 
 export default function App() {
   return <ActiveLab />

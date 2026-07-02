@@ -4,6 +4,33 @@ Both options share the same opening. The fork happens before Session 2 —
 pitch both in one minute at the end of Session 1 and let the room choose by
 a show of hands.
 
+---
+
+## Today's actual plan (as run)
+
+The room didn't need the Session-2 fork — MUI got built out as a real live
+session (module-13-mui-component-library/) rather than being folded into
+the capstone-only, and the capstone itself grew a required routing stage.
+Reading the Existing Codebase and Extending It Confidently are running as
+a handout (day-4-capstone/reading-the-codebase.md), not live teaching —
+there wasn't room, but they're too job-relevant to drop silently.
+
+| Time | Content |
+|---|---|
+| 9.30–11.00 | Day 3 recap/Q&A + Module 10 in full (client vs server state, Zustand, TanStack Query) |
+| 11.15–12.45 | Module 13 — MUI: slides + demo + the 15–20 min retrofit lab |
+| 12.45–1.45 | Lunch |
+| 1.45–3.15 | Capstone build — Stage 0 Setup → Stage 1 idea → Stage 2 main screen → Stage 3 routing (required) |
+| 3.15–3.30 | Break |
+| 3.30–3.50 | Capstone finish / stretch goals |
+| 3.50–4.05 | Show-and-tell |
+| 4.05–4.15 | Closing discussion (the four questions in brief.md) |
+| 4.15–4.25 | Codebase bridge — hand out reading-the-codebase.md, talk through it live rather than just distributing it cold |
+| 4.25–4.30 | Course wrap — the full arc, what to tackle first Monday, feedback |
+
+The two options below were the pre-course planning notes this was decided
+from. Kept for reference — they're superseded by the table above.
+
 ## Shared: Session 1 (9.30–11.00)
 
 - Opening Q&A / Day 3 recap (~15 min) — include the "look at the codebase"
