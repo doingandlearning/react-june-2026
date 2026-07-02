@@ -114,3 +114,5 @@ Use judgement on exact naming — the goal is a second route that earns its plac
 - What felt different about building from an empty folder versus extending the student-app you've been working in all week?
 - What would you reach for instead of React Router if this were a single-page tool with no real navigation need?
 - What's the first thing you'd want to look up if you had to do this again?
+
+Before you go: [reading-the-codebase.md](reading-the-codebase.md) — condensed notes on reading an unfamiliar React codebase and extending it confidently, covering the ground there wasn't room to teach live today.
